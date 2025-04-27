@@ -293,10 +293,10 @@
         branding: {
             logo: '',
             name: '',
-            welcomeText: '',
+            welcomeText: 'Привет, отправь мне любой вопрос!',
             responseTimeText: '',
             poweredBy: {
-                text: 'Algoritmika',
+                text: 'by Algoritmika Vladivostok',
                 link: 'https://vladivostoksovetskiy.algoritmika.org/ru'
             }
         },
