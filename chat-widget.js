@@ -1,3 +1,26 @@
+// chat-widget.js
+
+// Вставь конфигурацию перед остальным кодом
+window.ChatWidgetConfig = {
+    webhook: {
+        url: 'https://algoagent.ru/webhook/7bce0e01-e3ba-43f0-aa70-5cbe5823443c/chat',
+        route: 'general'
+    },
+    branding: {
+        logo: 'https://www.nocodecreative.io/wp-content/uploads/2025/01/cropped-New-Logo.png',
+        name: 'nocodecreative.io',
+        welcomeText: 'Hi 👋, how can we help?',
+        responseTimeText: 'We typically respond right away'
+    },
+    style: {
+        primaryColor: '#854fff',
+        secondaryColor: '#6b3fd4',
+        position: 'right',
+        backgroundColor: '#ffffff',
+        fontColor: '#333333'
+    }
+};
+
 // Chat Widget Script
 (function() {
     // Create and inject styles
