@@ -23,7 +23,7 @@ window.ChatWidgetConfig = {
 
 // Chat Widget Script
 (function() {
-    // Create and inject styles
+    // Создание и внедрение стилей
     const styles = `
         .n8n-chat-widget {
             --chat--color-primary: var(--n8n-chat-primary-color, #854fff);
