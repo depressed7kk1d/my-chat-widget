@@ -430,64 +430,67 @@
     }
 
     async function sendMessage(message) {
-    const messageData = {
-        action: "sendMessage",
-        sessionId: currentSessionId,
-        route: config.webhook.route,
-        chatInput: message,
-        metadata: {
-            userId: ""
-        }
-    };
+        const messageData = {
+            action: "sendMessage",
+            sessionId: currentSessionId,
+            route: config.webhook.route,
+            chatInput: message,
+            metadata: {
+                userId: ""
+            }
+        };
 
-    // Создание элемента для сообщения от пользователя
-    const userMessageDiv = document.createElement('div');
-    userMessageDiv.className = 'chat-message user';
-    userMessageDiv.innerHTML = message;
-    messagesContainer.appendChild(userMessageDiv);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-    try {
-        // Отправка данных на сервер
-        const response = await fetch(config.webhook.url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(messageData)
-        });
-
-        // Обработка ответа от сервера
-        const data = await response.json();
-        
-        const botMessageDiv = document.createElement('div');
-        botMessageDiv.className = 'chat-message bot';
-
-        // Проверка наличия данных в поле output
-        if (data && data.output) {
-            // Если данные присутствуют, выводим их
-            botMessageDiv.innerHTML = data.output;
-        } else {
-            // Если данные отсутствуют, выводим сообщение по умолчанию
-            botMessageDiv.innerHTML = "Привет, задайте мне вопрос!";
-        }
-
-        // Добавляем сообщение бота в чат
-        messagesContainer.appendChild(botMessageDiv);
+        const userMessageDiv = document.createElement('div');
+        userMessageDiv.className = 'chat-message user';
+        userMessageDiv.innerHTML = message;
+        messagesContainer.appendChild(userMessageDiv);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    } catch (error) {
-        // Логирование ошибки, если возникла проблема с запросом
-        console.error('Error:', error);
-        
-        // В случае ошибки выводим сообщение по умолчанию
-        const botMessageDiv = document.createElement('div');
-        botMessageDiv.className = 'chat-message bot';
-        botMessageDiv.innerHTML = "Привет, задайте мне вопрос!";
-        messagesContainer.appendChild(botMessageDiv);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+        try {
+            const response = await fetch(config.webhook.url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(messageData)
+            });
+            
+            const data = await response.json();
+            
+            const botMessageDiv = document.createElement('div');
+            botMessageDiv.className = 'chat-message bot';
+            botMessageDiv.innerHTML = Array.isArray(data) ? data[0].output : data.output;
+            messagesContainer.appendChild(botMessageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
-}
 
+    newChatBtn.addEventListener('click', startNewConversation);
+    
+    sendButton.addEventListener('click', () => {
+        const message = textarea.value.trim();
+        if (message) {
+            sendMessage(message);
+            textarea.value = '';
+        }
+    });
+    
+    textarea.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            const message = textarea.value.trim();
+            if (message) {
+                sendMessage(message);
+                textarea.value = '';
+            }
+        }
+    });
+    
+    toggleButton.addEventListener('click', () => {
+        chatContainer.classList.toggle('open');
+    });
 
     // Add close button handlers
     const closeButtons = chatContainer.querySelectorAll('.close-button');
