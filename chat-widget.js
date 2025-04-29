@@ -292,11 +292,11 @@
         branding: {
             logo: '',
             name: '',
-            welcomeText: '',
+            welcomeText: 'Здравствуйте, задайте свой вопрос!',
             responseTimeText: '',
             poweredBy: {
-                text: 'Powered by n8n',
-                link: 'https://n8n.partnerlinks.io/m8a94i19zhqq?utm_source=nocodecreative.io'
+                text: 'by Algoritmika Vladivostok',
+                link: 'https://vladivostoksovetskiy.algoritmika.org/ru'
             }
         },
         style: {
