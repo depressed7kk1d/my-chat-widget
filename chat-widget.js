@@ -421,7 +421,9 @@
 
             const botMessageDiv = document.createElement('div');
             botMessageDiv.className = 'chat-message bot';
-            botMessageDiv.innerHTML = Array.isArray(responseData) ? responseData[0].output : responseData.output;
+
+            botMessageDiv.innerHTML = (Array.isArray(responseData) && responseData[0] && responseData[0].output) ? responseData[0].output : (responseData.output || "Привет, задайте мне вопрос!");
+
             messagesContainer.appendChild(botMessageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         } catch (error) {
