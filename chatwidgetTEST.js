@@ -242,46 +242,46 @@
             white-space: nowrap; /* Предотвращает перенос текста */
             position: relative; /* Для размещения псевдоэлемента */
             overflow: hidden; /* Обрезаем все, что выходит за пределы кнопки */
-}
+        }
 
-.n8n-chat-widget .chat-toggle span {
-    display: block;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Псевдоэлемент для блика */
-.n8n-chat-widget .chat-toggle::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -50%; /* Начальная позиция блика, чтобы он начинал за пределами кнопки */
-    width: 50%; /* Ширина блика */
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
-    transform: skewX(-45deg);
-    animation: move-light 1s infinite; /* Анимация для блика */
-}
-
-/* Анимация для блика */
-@keyframes move-light {
-    0% {
-        left: -50%; /* Начальная точка блика за пределами кнопки */
-    }
-    50% {
-        left: 100%; /* Блик достигает правого края кнопки */
-    }
-    100% {
-        left: -50%; /* Блик возвращается в начало */
-    }
-}
-
-.n8n-chat-widget .chat-toggle.position-left {
-    right: auto;
-    left: 20px; /* Если позиция должна быть слева */
-}
+        .n8n-chat-widget .chat-toggle span {
+            display: block;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Псевдоэлемент для блика */
+        .n8n-chat-widget .chat-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%; /* Начальная позиция блика, чтобы он начинал за пределами кнопки */
+            width: 50%; /* Ширина блика */
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
+            transform: skewX(-45deg);
+            animation: move-light 1s infinite; /* Анимация для блика */
+        }
+        
+        /* Анимация для блика */
+        @keyframes move-light {
+            0% {
+                left: -50%; /* Начальная точка блика за пределами кнопки */
+            }
+            50% {
+                left: 100%; /* Блик достигает правого края кнопки */
+            }
+            100% {
+                left: -50%; /* Блик возвращается в начало */
+            }
+        }
+        
+        .n8n-chat-widget .chat-toggle.position-left {
+            right: auto;
+            left: 20px; /* Если позиция должна быть слева */
+        }
 
 
 
