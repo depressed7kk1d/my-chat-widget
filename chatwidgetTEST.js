@@ -221,10 +221,10 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 120px; /* Increased size */
-    height: 120px; /* Increased size */
-    border-radius: 10px; /* Slightly rounded corners */
-    background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%); /* Gradient from purple to white */
+    width: 180px; /* Размер кнопки */
+    height: 60px; /* Соразмерно увеличен размер */
+    border-radius: 12px; /* Округленные углы */
+    background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%); /* Градиент */
     color: white;
     border: none;
     cursor: pointer;
@@ -234,6 +234,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 20px; /* Увеличение размера шрифта */
+    font-weight: 700; /* Жирный шрифт */
+    text-align: center;
+    padding: 0 10px; /* Немного горизонтального отступа */
+    line-height: 1.2; /* Чтобы текст не был слишком сжать */
+    white-space: nowrap; /* Предотвращает перенос текста */
 }
 
 .n8n-chat-widget .chat-toggle.position-left {
@@ -245,11 +251,14 @@
     transform: scale(1.05);
 }
 
-.n8n-chat-widget .chat-toggle svg {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
+.n8n-chat-widget .chat-toggle span {
+    display: block;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
 
 
         .n8n-chat-widget .chat-footer {
