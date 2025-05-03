@@ -230,7 +230,7 @@
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
     z-index: 999;
-    transition: transform 0.3s, background 2s ease-in-out; /* Плавная анимация фона */
+    transition: transform 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -240,11 +240,7 @@
     padding: 0 10px; /* Немного горизонтального отступа */
     line-height: 1.2; /* Чтобы текст не был слишком сжать */
     white-space: nowrap; /* Предотвращает перенос текста */
-}
-
-.n8n-chat-widget .chat-toggle:hover {
-    transform: scale(1.05);
-    background: linear-gradient(135deg, var(--chat--color-secondary) 0%, var(--chat--color-background) 100%); /* Градиент, изменяющийся при наведении */
+    animation: gradientAnimation 5s infinite alternate; /* Анимация плавного перехода фона */
 }
 
 .n8n-chat-widget .chat-toggle span {
@@ -254,6 +250,20 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* Анимация фона */
+@keyframes gradientAnimation {
+    0% {
+        background: linear-gradient(135deg, #854fff 0%, #ffffff 100%);
+    }
+    50% {
+        background: linear-gradient(135deg, #ffffff 0%, #854fff 100%);
+    }
+    100% {
+        background: linear-gradient(135deg, #854fff 0%, #ffffff 100%);
+    }
+}
+
 
 
 .n8n-chat-widget .chat-toggle.position-left {
