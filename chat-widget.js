@@ -219,37 +219,71 @@
 
         .n8n-chat-widget .chat-toggle {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%);
+            bottom: 20px; /* Отступ от нижнего края экрана */
+            right: 20px; /* Отступ от правого края экрана */
+            width: 180px; /* Размер кнопки */
+            height: 60px; /* Размер кнопки */
+            border-radius: 12px; /* Округленные углы */
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); /* Тень зеленого цвета */
             z-index: 999;
             transition: transform 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 20px; /* Размер шрифта */
+            font-weight: 700; /* Жирный шрифт */
+            text-align: center;
+            padding: 0 10px; /* Немного горизонтального отступа */
+            line-height: 1.2; /* Чтобы текст не был слишком сжать */
+            white-space: nowrap; /* Предотвращает перенос текста */
+            position: fixed; /* Для размещения псевдоэлемента */
+            overflow: hidden; /* Обрезаем все, что выходит за пределы кнопки */
         }
 
+        .n8n-chat-widget .chat-toggle span {
+            display: block;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Псевдоэлемент для блика */
+        .n8n-chat-widget .chat-toggle::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%; /* Начальная позиция блика, чтобы он начинал за пределами кнопки */
+            width: 50%; /* Ширина блика */
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
+            transform: skewX(-45deg);
+            animation: move-light 2s infinite; /* Анимация для блика */
+        }
+        
+        /* Анимация для блика */
+        @keyframes move-light {
+            0% {
+                left: -50%; /* Начальная точка блика за пределами кнопки */
+            }
+            50% {
+                left: 100%; /* Блик достигает правого края кнопки */
+            }
+            100% {
+                left: -50%; /* Блик возвращается в начало */
+            }
+        }
+        
         .n8n-chat-widget .chat-toggle.position-left {
             right: auto;
-            left: 20px;
+            left: 20px; /* Если позиция должна быть слева */
         }
 
-        .n8n-chat-widget .chat-toggle:hover {
-            transform: scale(1.05);
-        }
 
-        .n8n-chat-widget .chat-toggle svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
 
         .n8n-chat-widget .chat-footer {
             padding: 8px;
@@ -347,7 +381,7 @@
                 <svg class="message-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.2L4 17.2V4h16v12z"/>
                 </svg>
-                Написать виртуальному ассистенту
+                Написать виртуальному ассистенту 
             </button>
             <p class="response-text">${config.branding.responseTimeText}</p>
         </div>
@@ -362,8 +396,8 @@
             </div>
             <div class="chat-messages"></div>
             <div class="chat-input">
-                <textarea placeholder="Напишите ваше сообщение" rows="1"></textarea>
-                <button type="submit">Отправить</button>
+                <textarea placeholder="Type your message here..." rows="1"></textarea>
+                <button type="submit">Send</button>
             </div>
             <div class="chat-footer">
                 <a href="${config.branding.poweredBy.link}" target="_blank">${config.branding.poweredBy.text}</a>
@@ -375,10 +409,8 @@
     
     const toggleButton = document.createElement('button');
     toggleButton.className = `chat-toggle${config.style.position === 'left' ? ' position-left' : ''}`;
-    toggleButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M12 2C6.477 2 2 6.477 2 12c0 1.821.487 3.53 1.338 5L2.5 21.5l4.5-.838A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.476 0-2.886-.313-4.156-.878l-3.156.586.586-3.156A7.962 7.962 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/>
-        </svg>`;
+    toggleButton.innerHTML = `<span>Спросите ИИ</span>`;
+
     
     widgetContainer.appendChild(chatContainer);
     widgetContainer.appendChild(toggleButton);
