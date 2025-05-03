@@ -241,6 +241,7 @@
     line-height: 1.2; /* Чтобы текст не был слишком сжать */
     white-space: nowrap; /* Предотвращает перенос текста */
     position: relative; /* Для размещения псевдоэлемента */
+    overflow: hidden; /* Обрезаем все, что выходит за пределы кнопки */
 }
 
 .n8n-chat-widget .chat-toggle span {
@@ -256,24 +257,24 @@
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    width: 1.5em;
+    left: -50%; /* Начальная позиция блика, чтобы он начинал за пределами кнопки */
+    width: 50%; /* Ширина блика */
     height: 100%;
     background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
-    transform: translateX(-4em) skewX(-45deg);
+    transform: skewX(-45deg);
     animation: move-light 1s infinite; /* Анимация для блика */
 }
 
 /* Анимация для блика */
 @keyframes move-light {
     0% {
-        transform: translateX(-4em) skewX(-45deg); /* Начальная точка */
+        left: -50%; /* Начальная точка блика за пределами кнопки */
     }
     50% {
-        transform: translateX(10em) skewX(-45deg); /* Блик перемещается */
+        left: 100%; /* Блик достигает правого края кнопки */
     }
     100% {
-        transform: translateX(-4em) skewX(-45deg); /* Блик возвращается в начало */
+        left: -50%; /* Блик возвращается в начало */
     }
 }
 
@@ -281,6 +282,7 @@
     right: auto;
     left: 20px;
 }
+
 
         .n8n-chat-widget .chat-footer {
             padding: 8px;
