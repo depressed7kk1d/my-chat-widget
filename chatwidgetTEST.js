@@ -262,7 +262,7 @@
             height: 100%;
             background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
             transform: skewX(-45deg);
-            animation: move-light 1.5s infinite; /* Анимация для блика */
+            animation: move-light 2s infinite; /* Анимация для блика */
         }
         
         /* Анимация для блика */
