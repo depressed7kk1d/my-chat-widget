@@ -222,9 +222,9 @@
     bottom: 20px;
     right: 20px;
     width: 180px; /* Размер кнопки */
-    height: 60px; /* Соразмерно увеличен размер */
+    height: 60px; /* Размер кнопки */
     border-radius: 12px; /* Округленные углы */
-    background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%); /* Градиент */
+    background: linear-gradient(135deg, #854fff 0%, #854fff 100%); /* Фиолетовый фон */
     color: white;
     border: none;
     cursor: pointer;
@@ -234,13 +234,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px; /* Увеличение размера шрифта */
+    font-size: 20px; /* Размер шрифта */
     font-weight: 700; /* Жирный шрифт */
     text-align: center;
     padding: 0 10px; /* Немного горизонтального отступа */
     line-height: 1.2; /* Чтобы текст не был слишком сжать */
     white-space: nowrap; /* Предотвращает перенос текста */
-    animation: gradientAnimation 5s infinite alternate; /* Анимация плавного перехода фона */
+    animation: move-light 1s infinite; /* Анимация блика */
 }
 
 .n8n-chat-widget .chat-toggle span {
@@ -251,18 +251,19 @@
     text-overflow: ellipsis;
 }
 
-/* Анимация фона */
-@keyframes gradientAnimation {
+/* Анимация для блика */
+@keyframes move-light {
     0% {
-        background: linear-gradient(135deg, #854fff 0%, #ffffff 100%);
+        transform: translateX(-4em) skewX(-45deg);
     }
     50% {
-        background: linear-gradient(135deg, #ffffff 0%, #854fff 100%);
+        transform: translateX(10em) skewX(-45deg);
     }
     100% {
-        background: linear-gradient(135deg, #854fff 0%, #ffffff 100%);
+        transform: translateX(-4em) skewX(-45deg);
     }
 }
+
 
 
 
