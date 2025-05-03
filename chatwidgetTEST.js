@@ -218,30 +218,30 @@
         }
 
         .n8n-chat-widget .chat-toggle {
-    position: fixed;
-    bottom: 20px; /* Отступ от нижнего края экрана */
-    right: 20px; /* Отступ от правого края экрана */
-    width: 180px; /* Размер кнопки */
-    height: 60px; /* Размер кнопки */
-    border-radius: 12px; /* Округленные углы */
-    background: linear-gradient(135deg, #854fff 0%, #854fff 100%); /* Фиолетовый фон */
-    color: white;
-    border: none;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
-    z-index: 999;
-    transition: transform 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px; /* Размер шрифта */
-    font-weight: 700; /* Жирный шрифт */
-    text-align: center;
-    padding: 0 10px; /* Немного горизонтального отступа */
-    line-height: 1.2; /* Чтобы текст не был слишком сжать */
-    white-space: nowrap; /* Предотвращает перенос текста */
-    position: relative; /* Для размещения псевдоэлемента */
-    overflow: hidden; /* Обрезаем все, что выходит за пределы кнопки */
+            position: fixed;
+            bottom: 20px; /* Отступ от нижнего края экрана */
+            right: 20px; /* Отступ от правого края экрана */
+            width: 180px; /* Размер кнопки */
+            height: 60px; /* Размер кнопки */
+            border-radius: 12px; /* Округленные углы */
+            background: linear-gradient(135deg, #854fff 0%, #854fff 100%); /* Фиолетовый фон */
+            color: white;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
+            z-index: 999;
+            transition: transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px; /* Размер шрифта */
+            font-weight: 700; /* Жирный шрифт */
+            text-align: center;
+            padding: 0 10px; /* Немного горизонтального отступа */
+            line-height: 1.2; /* Чтобы текст не был слишком сжать */
+            white-space: nowrap; /* Предотвращает перенос текста */
+            position: relative; /* Для размещения псевдоэлемента */
+            overflow: hidden; /* Обрезаем все, что выходит за пределы кнопки */
 }
 
 .n8n-chat-widget .chat-toggle span {
