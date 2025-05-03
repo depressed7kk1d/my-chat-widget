@@ -218,38 +218,39 @@
         }
 
         .n8n-chat-widget .chat-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 120px; /* Increased size */
-            height: 120px; /* Increased size */
-            border-radius: 0px; /* Square shape */
-            background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%); /* Gradient from purple to white */
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
-            z-index: 999;
-            transition: transform 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 120px; /* Increased size */
+    height: 120px; /* Increased size */
+    border-radius: 10px; /* Slightly rounded corners */
+    background: linear-gradient(135deg, var(--chat--color-primary) 0%, var(--chat--color-secondary) 100%); /* Gradient from purple to white */
+    color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
+    z-index: 999;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .n8n-chat-widget .chat-toggle.position-left {
-            right: auto;
-            left: 20px;
-        }
+.n8n-chat-widget .chat-toggle.position-left {
+    right: auto;
+    left: 20px;
+}
 
-        .n8n-chat-widget .chat-toggle:hover {
-            transform: scale(1.05);
-        }
+.n8n-chat-widget .chat-toggle:hover {
+    transform: scale(1.05);
+}
 
-        .n8n-chat-widget .chat-toggle svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
+.n8n-chat-widget .chat-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
 
         .n8n-chat-widget .chat-footer {
             padding: 8px;
