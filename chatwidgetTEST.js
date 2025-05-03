@@ -240,7 +240,7 @@
     padding: 0 10px; /* Немного горизонтального отступа */
     line-height: 1.2; /* Чтобы текст не был слишком сжать */
     white-space: nowrap; /* Предотвращает перенос текста */
-    animation: move-light 1s infinite; /* Анимация блика */
+    position: relative; /* Для размещения псевдоэлемента */
 }
 
 .n8n-chat-widget .chat-toggle span {
@@ -251,18 +251,32 @@
     text-overflow: ellipsis;
 }
 
+/* Псевдоэлемент для блика */
+.n8n-chat-widget .chat-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5em;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
+    transform: translateX(-4em) skewX(-45deg);
+    animation: move-light 1s infinite; /* Анимация для блика */
+}
+
 /* Анимация для блика */
 @keyframes move-light {
     0% {
         transform: translateX(-4em) skewX(-45deg);
     }
     50% {
-        transform: translateX(10em) skewX(-45deg);
+        transform: translateX(10em) skewX(-45deg); /* Блик достигает конца */
     }
     100% {
-        transform: translateX(-4em) skewX(-45deg);
+        transform: translateX(-4em) skewX(-45deg); /* Блик возвращается в начальную точку */
     }
 }
+
 
 
 
