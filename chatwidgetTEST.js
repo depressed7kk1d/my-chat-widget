@@ -267,24 +267,21 @@
 /* Анимация для блика */
 @keyframes move-light {
     0% {
-        transform: translateX(-4em) skewX(-45deg);
+        transform: translateX(-4em) skewX(-45deg); /* Начальная точка */
     }
     50% {
-        transform: translateX(10em) skewX(-45deg); /* Блик достигает конца */
+        transform: translateX(10em) skewX(-45deg); /* Блик перемещается */
     }
     100% {
-        transform: translateX(-4em) skewX(-45deg); /* Блик возвращается в начальную точку */
+        transform: translateX(-4em) skewX(-45deg); /* Блик возвращается в начало */
     }
 }
-
-
-
-
 
 .n8n-chat-widget .chat-toggle.position-left {
     right: auto;
     left: 20px;
 }
+
         .n8n-chat-widget .chat-footer {
             padding: 8px;
             text-align: center;
