@@ -224,11 +224,11 @@
             width: 180px; /* Размер кнопки */
             height: 60px; /* Размер кнопки */
             border-radius: 12px; /* Округленные углы */
-            background: linear-gradient(135deg, #854fff 0%, #854fff 100%); /* Фиолетовый фон */
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(133, 79, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); /* Тень зеленого цвета */
             z-index: 999;
             transition: transform 0.3s;
             display: flex;
