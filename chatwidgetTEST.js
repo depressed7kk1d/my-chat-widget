@@ -219,8 +219,8 @@
 
         .n8n-chat-widget .chat-toggle {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 20px; /* Отступ от нижнего края экрана */
+    right: 20px; /* Отступ от правого края экрана */
     width: 180px; /* Размер кнопки */
     height: 60px; /* Размер кнопки */
     border-radius: 12px; /* Округленные углы */
@@ -280,8 +280,9 @@
 
 .n8n-chat-widget .chat-toggle.position-left {
     right: auto;
-    left: 20px;
+    left: 20px; /* Если позиция должна быть слева */
 }
+
 
 
         .n8n-chat-widget .chat-footer {
