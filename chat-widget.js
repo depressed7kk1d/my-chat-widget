@@ -17,6 +17,8 @@
             display: none;
             width: 380px;
             height: 600px;
+            max-width: 90vw;
+            max-height: 85vh;
             background: var(--chat--color-background);
             border-radius: 12px;
             box-shadow: 0 8px 32px rgba(133, 79, 255, 0.15);
@@ -219,29 +221,28 @@
 
         .n8n-chat-widget .chat-toggle {
             position: fixed;
-            bottom: 20px; /* Отступ от нижнего края экрана */
-            right: 20px; /* Отступ от правого края экрана */
-            width: 180px; /* Размер кнопки */
-            height: 60px; /* Размер кнопки */
-            border-radius: 12px; /* Округленные углы */
+            bottom: 20px;
+            right: 20px;
+            width: 180px;
+            height: 60px;
+            border-radius: 12px;
             background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
             color: white;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3); /* Тень зеленого цвета */
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
             z-index: 999;
             transition: transform 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px; /* Размер шрифта */
-            font-weight: 700; /* Жирный шрифт */
+            font-size: 20px;
+            font-weight: 700;
             text-align: center;
-            padding: 0 10px; /* Немного горизонтального отступа */
-            line-height: 1.2; /* Чтобы текст не был слишком сжать */
-            white-space: nowrap; /* Предотвращает перенос текста */
-            position: fixed; /* Для размещения псевдоэлемента */
-            overflow: hidden; /* Обрезаем все, что выходит за пределы кнопки */
+            padding: 0 10px;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         .n8n-chat-widget .chat-toggle span {
@@ -251,39 +252,24 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        
-        /* Псевдоэлемент для блика */
+
         .n8n-chat-widget .chat-toggle::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -50%; /* Начальная позиция блика, чтобы он начинал за пределами кнопки */
-            width: 50%; /* Ширина блика */
+            left: -50%;
+            width: 50%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.6); /* Белый блик */
+            background-color: rgba(255, 255, 255, 0.6);
             transform: skewX(-45deg);
-            animation: move-light 2s infinite; /* Анимация для блика */
+            animation: move-light 2s infinite;
         }
-        
-        /* Анимация для блика */
+
         @keyframes move-light {
-            0% {
-                left: -50%; /* Начальная точка блика за пределами кнопки */
-            }
-            50% {
-                left: 100%; /* Блик достигает правого края кнопки */
-            }
-            100% {
-                left: -50%; /* Блик возвращается в начало */
-            }
+            0% { left: -50%; }
+            50% { left: 100%; }
+            100% { left: -50%; }
         }
-        
-        .n8n-chat-widget .chat-toggle.position-left {
-            right: auto;
-            left: 20px; /* Если позиция должна быть слева */
-        }
-
-
 
         .n8n-chat-widget .chat-footer {
             padding: 8px;
@@ -304,6 +290,44 @@
         .n8n-chat-widget .chat-footer a:hover {
             opacity: 1;
         }
+
+        /* 📱 Адаптация под телефоны */
+        @media (max-width: 768px) {
+            .n8n-chat-widget .chat-container {
+                width: 100vw;
+                height: 100vh;
+                max-width: 100vw;
+                max-height: 100vh;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                border-radius: 0;
+            }
+
+            .n8n-chat-widget .chat-toggle {
+                width: 140px;
+                height: 50px;
+                font-size: 16px;
+                font-weight: 600;
+            }
+        }
+
+        /* 📱 Очень маленькие экраны */
+        @media (max-width: 480px) {
+            .n8n-chat-widget .chat-container {
+                font-size: 13px;
+            }
+
+            .n8n-chat-widget .chat-input textarea {
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .n8n-chat-widget .chat-input button {
+                padding: 0 14px;
+                font-size: 13px;
+            }
+        }
     `;
 
     // Load Geist font
@@ -319,10 +343,7 @@
 
     // Default configuration
     const defaultConfig = {
-        webhook: {
-            url: '',
-            route: ''
-        },
+        webhook: { url: '', route: '' },
         branding: {
             logo: '',
             name: '',
@@ -330,7 +351,7 @@
             responseTimeText: '',
             poweredBy: {
                 text: 'С заботой от Algoritmika ❤️',
-                link: 'https://vladivostok.algoritmika.org/ru'
+                link: 'https://algoritmika.org'
             }
         },
         style: {
@@ -342,25 +363,20 @@
         }
     };
 
-    // Merge user config with defaults
-    const config = window.ChatWidgetConfig ? 
-        {
-            webhook: { ...defaultConfig.webhook, ...window.ChatWidgetConfig.webhook },
-            branding: { ...defaultConfig.branding, ...window.ChatWidgetConfig.branding },
-            style: { ...defaultConfig.style, ...window.ChatWidgetConfig.style }
-        } : defaultConfig;
+    const config = window.ChatWidgetConfig ? {
+        webhook: { ...defaultConfig.webhook, ...window.ChatWidgetConfig.webhook },
+        branding: { ...defaultConfig.branding, ...window.ChatWidgetConfig.branding },
+        style: { ...defaultConfig.style, ...window.ChatWidgetConfig.style }
+    } : defaultConfig;
 
-    // Prevent multiple initializations
     if (window.N8NChatWidgetInitialized) return;
     window.N8NChatWidgetInitialized = true;
 
     let currentSessionId = '';
 
-    // Create widget container
     const widgetContainer = document.createElement('div');
     widgetContainer.className = 'n8n-chat-widget';
-    
-    // Set CSS variables for colors
+
     widgetContainer.style.setProperty('--n8n-chat-primary-color', config.style.primaryColor);
     widgetContainer.style.setProperty('--n8n-chat-secondary-color', config.style.secondaryColor);
     widgetContainer.style.setProperty('--n8n-chat-background-color', config.style.backgroundColor);
@@ -368,7 +384,7 @@
 
     const chatContainer = document.createElement('div');
     chatContainer.className = `chat-container${config.style.position === 'left' ? ' position-left' : ''}`;
-    
+
     const newConversationHTML = `
         <div class="brand-header">
             <img src="${config.branding.logo}" alt="${config.branding.name}">
@@ -404,14 +420,13 @@
             </div>
         </div>
     `;
-    
+
     chatContainer.innerHTML = newConversationHTML + chatInterfaceHTML;
-    
+
     const toggleButton = document.createElement('button');
     toggleButton.className = `chat-toggle${config.style.position === 'left' ? ' position-left' : ''}`;
     toggleButton.innerHTML = `<span>Спросите ИИ</span>`;
 
-    
     widgetContainer.appendChild(chatContainer);
     widgetContainer.appendChild(toggleButton);
     document.body.appendChild(widgetContainer);
@@ -432,17 +447,13 @@
             action: "loadPreviousSession",
             sessionId: currentSessionId,
             route: config.webhook.route,
-            metadata: {
-                userId: ""
-            }
+            metadata: { userId: "" }
         }];
 
         try {
             const response = await fetch(config.webhook.url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
             });
 
@@ -453,9 +464,9 @@
 
             const botMessageDiv = document.createElement('div');
             botMessageDiv.className = 'chat-message bot';
-
-            botMessageDiv.innerHTML = (Array.isArray(responseData) && responseData[0] && responseData[0].output) ? responseData[0].output : (responseData.output || "Привет, задайте мне вопрос!");
-
+            botMessageDiv.innerHTML = (Array.isArray(responseData) && responseData[0] && responseData[0].output)
+                ? responseData[0].output
+                : (responseData.output || "Привет, задайте мне вопрос!");
             messagesContainer.appendChild(botMessageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         } catch (error) {
@@ -469,9 +480,7 @@
             sessionId: currentSessionId,
             route: config.webhook.route,
             chatInput: message,
-            metadata: {
-                userId: ""
-            }
+            metadata: { userId: "" }
         };
 
         const userMessageDiv = document.createElement('div');
@@ -483,14 +492,12 @@
         try {
             const response = await fetch(config.webhook.url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(messageData)
             });
-            
+
             const data = await response.json();
-            
+
             const botMessageDiv = document.createElement('div');
             botMessageDiv.className = 'chat-message bot';
             botMessageDiv.innerHTML = Array.isArray(data) ? data[0].output : data.output;
@@ -502,7 +509,7 @@
     }
 
     newChatBtn.addEventListener('click', startNewConversation);
-    
+
     sendButton.addEventListener('click', () => {
         const message = textarea.value.trim();
         if (message) {
@@ -510,7 +517,7 @@
             textarea.value = '';
         }
     });
-    
+
     textarea.addEventListener('keypress', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -521,12 +528,11 @@
             }
         }
     });
-    
+
     toggleButton.addEventListener('click', () => {
         chatContainer.classList.toggle('open');
     });
 
-    // Add close button handlers
     const closeButtons = chatContainer.querySelectorAll('.close-button');
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
