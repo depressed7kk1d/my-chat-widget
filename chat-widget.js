@@ -330,7 +330,6 @@
             responseTimeText: '',
             poweredBy: {
                 text: 'by Algoritmika Vladivostok',
-                link: 'https://vladivostoksovetskiy.algoritmika.org/ru'
             }
         },
         style: {
