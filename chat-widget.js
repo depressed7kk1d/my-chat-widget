@@ -329,7 +329,8 @@
             welcomeText: 'Здравствуйте, задайте свой вопрос!',
             responseTimeText: '',
             poweredBy: {
-                text: 'by Algoritmika Vladivostok',
+                text: 'С заботой от Algoritmika ❤️',
+                link: 'https://vladivostok.algoritmika.org/ru'
             }
         },
         style: {
