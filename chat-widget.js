@@ -195,7 +195,7 @@
             color: var(--chat--color-font);
             resize: none;
             font-family: inherit;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .n8n-chat-widget .chat-input textarea::placeholder {
@@ -320,7 +320,7 @@
             }
 
             .n8n-chat-widget .chat-input textarea {
-                font-size: 13px;
+                font-size: 16px;
                 padding: 10px;
             }
 
