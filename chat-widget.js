@@ -13,7 +13,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 1000;
+            z-index: 999999;
             display: none;
             width: 380px;
             height: 600px;
@@ -294,16 +294,16 @@
         /* 📱 Адаптация под телефоны (ИСПРАВЛЕНО) */
         @media (max-width: 768px) {
             .n8n-chat-widget .chat-container {
+                bottom: auto;              /* убираем фиксацию снизу */
+                top: 62px;                 /* отступ под хедером */
+                right: 20px;
                 width: 100vw;
-                height: 100dvh;
+                height: calc(100dvh - 62px); /* уменьшаем высоту на размер хедера */
                 max-width: 100vw;
                 max-height: 100dvh;
-                top: 0;
-                bottom: 0;
-                right: 0;
-                left: 0;
                 border-radius: 0;
-            }
+                z-index: 999999;           /* гарантируем, что выше хедера */
+        }
 
             .n8n-chat-widget .chat-toggle {
                 width: 140px;
