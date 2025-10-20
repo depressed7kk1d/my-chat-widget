@@ -467,7 +467,7 @@
             botMessageDiv.className = 'chat-message bot';
             botMessageDiv.innerHTML = (Array.isArray(responseData) && responseData[0] && responseData[0].output)
                 ? responseData[0].output
-                : (responseData.output || "Привет, задайте мне вопрос!");
+                : (responseData.output || "Здравствуйте! Я — Оксана, онлайн-консультант школы "Алгоритмика" в Чкаловском районе Екатеринбурга 😊");
             messagesContainer.appendChild(botMessageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         } catch (error) {
