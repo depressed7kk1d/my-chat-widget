@@ -13,7 +13,7 @@
             position: fixed;
             bottom: 20px;
             right: 20px;
-            z-index: 999999;
+            z-index: 9000;
             display: none;
             width: 380px;
             height: 600px;
@@ -291,20 +291,20 @@
             opacity: 1;
         }
 
-                /* 📱 Адаптация под телефоны (ИСПРАВЛЕНО) */
+        /* 📱 Адаптация под телефоны (ИСПРАВЛЕНО) */
         @media (max-width: 768px) {
             .n8n-chat-widget .chat-container {
-                bottom: auto;                 /* убрали фиксацию снизу */
-                top: 62px;                    /* отступ под хедером */
-                right: 20px;
                 width: 100vw;
-                height: calc(100dvh - 62px);  /* корректная высота */
+                height: 100dvh;
                 max-width: 100vw;
                 max-height: 100dvh;
+                top: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
                 border-radius: 0;
-                z-index: 999999;              /* гарантируем поверх хедера */
             }
-        
+
             .n8n-chat-widget .chat-toggle {
                 width: 140px;
                 height: 50px;
@@ -312,7 +312,6 @@
                 font-weight: 600;
             }
         }
-
 
         /* 📱 Очень маленькие экраны */
         @media (max-width: 480px) {
