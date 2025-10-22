@@ -231,7 +231,7 @@
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-            z-index: 999;
+            z-index: 8999;
             transition: transform 0.3s;
             display: flex;
             align-items: center;
