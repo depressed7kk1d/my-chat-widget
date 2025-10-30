@@ -27,8 +27,23 @@
       border: 1px solid rgba(133, 79, 255, 0.2);
       overflow: hidden;
       font-family: inherit;
-      /* страховка на случай где-то унаследованной прозрачности */
-      backdrop-filter: none;
+
+      /* анти-прозрачность и изоляция стека слоёв */
+      isolation: isolate;
+      background-color: var(--chat--color-background) !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      -moz-backdrop-filter: none !important;
+    }
+
+    /* жёстко фиксируем фон на всех ключевых секциях */
+    .n8n-chat-widget .chat-interface,
+    .n8n-chat-widget .chat-messages,
+    .n8n-chat-widget .brand-header,
+    .n8n-chat-widget .chat-input,
+    .n8n-chat-widget .chat-footer {
+      background: var(--chat--color-background) !important;
+      background-color: var(--chat--color-background) !important;
     }
 
     .n8n-chat-widget .chat-container.position-left {
@@ -48,7 +63,7 @@
       gap: 12px;
       border-bottom: 1px solid rgba(133, 79, 255, 0.1);
       position: relative;
-      background: var(--chat--color-background); /* явный фон шапки */
+      background: var(--chat--color-background);
     }
 
     .n8n-chat-widget .close-button {
@@ -68,7 +83,6 @@
       font-size: 20px;
       opacity: 0.6;
     }
-
     .n8n-chat-widget .close-button:hover { opacity: 1; }
 
     .n8n-chat-widget .brand-header img { width: 32px; height: 32px; }
@@ -95,7 +109,6 @@
       font-size: 16px; transition: transform 0.3s; font-weight: 500; font-family: inherit;
       margin-bottom: 12px;
     }
-
     .n8n-chat-widget .new-chat-btn:hover { transform: scale(1.02); }
 
     .n8n-chat-widget .message-icon { width: 20px; height: 20px; }
@@ -146,7 +159,6 @@
       color: var(--chat--color-font); resize: none;
       font-family: inherit; font-size: 16px;
     }
-
     .n8n-chat-widget .chat-input textarea::placeholder { color: var(--chat--color-font); opacity: .6; }
 
     .n8n-chat-widget .chat-input button {
@@ -154,7 +166,6 @@
       color: #fff; border: none; border-radius: 8px; padding: 0 20px; cursor: pointer;
       transition: transform .2s; font-family: inherit; font-weight: 500;
     }
-
     .n8n-chat-widget .chat-input button:hover { transform: scale(1.05); }
 
     .n8n-chat-widget .chat-toggle {
@@ -168,16 +179,13 @@
       font-size: 20px; font-weight: 700; text-align: center; padding: 0 10px; line-height: 1.2;
       white-space: nowrap; overflow: hidden;
     }
-
     .n8n-chat-widget .chat-toggle span {
       display: block; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
-
     .n8n-chat-widget .chat-toggle::before {
       content: ''; position: absolute; top: 0; left: -50%; width: 50%; height: 100%;
       background-color: rgba(255,255,255,0.6); transform: skewX(-45deg); animation: move-light 2s infinite;
     }
-
     @keyframes move-light {
       0% { left: -50%; } 50% { left: 100%; } 100% { left: -50%; }
     }
@@ -186,25 +194,21 @@
       padding: 8px; text-align: center; background: var(--chat--color-background);
       border-top: 1px solid rgba(133, 79, 255, 0.1);
     }
-
     .n8n-chat-widget .chat-footer a {
       color: var(--chat--color-primary); text-decoration: none; font-size: 12px; opacity: .8; transition: opacity .2s; font-family: inherit;
     }
-
     .n8n-chat-widget .chat-footer a:hover { opacity: 1; }
 
     /* 📱 Адаптация под телефоны */
     @media (max-width: 768px) {
       .n8n-chat-widget .chat-container {
-        /* Используем JS-переменную --vh для корректного 100dvh на iOS */
         width: 100vw;
         height: calc(var(--vh, 1vh) * 100);
         max-width: 100vw;
         max-height: calc(var(--vh, 1vh) * 100);
         top: 0; bottom: 0; right: 0; left: 0; border-radius: 0;
-        background: var(--chat--color-background); /* ЯВНО белый / заданный фон */
+        background: var(--chat--color-background);
       }
-
       .n8n-chat-widget .chat-toggle {
         width: 140px; height: 50px; font-size: 16px; font-weight: 600;
       }
@@ -263,8 +267,7 @@
         if (v && typeof v === 'object' && !Array.isArray(v)) {
           out[k] = mergeSafe(base[k] || {}, v);
         } else {
-          // не затираем дефолты пустыми строками/undefined/null
-          if (isNonEmpty(v)) out[k] = v;
+          if (isNonEmpty(v)) out[k] = v; // не затираем дефолты пустыми
         }
       }
     }
@@ -272,6 +275,7 @@
   };
 
   const config = window.ChatWidgetConfig ? mergeSafe(defaultConfig, window.ChatWidgetConfig) : defaultConfig;
+  const brandName = isNonEmpty(config.branding.name) ? config.branding.name : 'Алгоритмика Екатеринбург';
 
   if (window.N8NChatWidgetInitialized) return;
   window.N8NChatWidgetInitialized = true;
@@ -284,13 +288,9 @@
   const widgetContainer = document.createElement('div');
   widgetContainer.className = 'n8n-chat-widget';
 
-  // Безопасная установка CSS-переменных: не пишем пустые значения
+  // Безопасная установка CSS-переменных
   const setCssVar = (el, name, val) => {
-    if (isNonEmpty(val)) {
-      el.style.setProperty(name, String(val));
-    } else {
-      // оставляем переменную неустановленной, чтобы сработал CSS fallback
-    }
+    if (isNonEmpty(val)) el.style.setProperty(name, String(val));
   };
 
   setCssVar(widgetContainer, '--n8n-chat-primary-color',   config.style.primaryColor);
@@ -303,8 +303,8 @@
 
   const newConversationHTML = `
     <div class="brand-header">
-      <img src="${isNonEmpty(config.branding.logo) ? config.branding.logo : ''}" alt="${config.branding.name}">
-      <span>${config.branding.name}</span>
+      <img src="${isNonEmpty(config.branding.logo) ? config.branding.logo : ''}" alt="${brandName}">
+      <span>${brandName}</span>
       <button class="close-button" aria-label="Закрыть">×</button>
     </div>
     <div class="new-conversation">
@@ -322,10 +322,10 @@
   `;
 
   const chatInterfaceHTML = `
-    <div class="chat-interface" role="dialog" aria-label="${config.branding.name}">
+    <div class="chat-interface" role="dialog" aria-label="${brandName}">
       <div class="brand-header">
-        <img src="${isNonEmpty(config.branding.logo) ? config.branding.logo : ''}" alt="${config.branding.name}">
-        <span>${config.branding.name}</span>
+        <img src="${isNonEmpty(config.branding.logo) ? config.branding.logo : ''}" alt="${brandName}">
+        <span>${brandName}</span>
         <button class="close-button" aria-label="Закрыть">×</button>
       </div>
       <div class="chat-messages"></div>
@@ -368,7 +368,6 @@
   setVhUnit();
   window.addEventListener('resize', setVhUnit);
   window.addEventListener('orientationchange', setVhUnit);
-  // Иногда iOS корректирует высоту после фокуса поля ввода
   textarea.addEventListener('focus', () => setTimeout(setVhUnit, 50));
   textarea.addEventListener('blur', () => setTimeout(setVhUnit, 50));
 
@@ -376,7 +375,7 @@
   // Логика
   // ==============================
   function generateUUID() {
-    if (crypto && crypto.randomUUID) return crypto.randomUUID();
+    if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
     // fallback
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
       const r = (Math.random() * 16) | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
@@ -402,10 +401,18 @@
 
       const responseData = await response.json();
 
-      chatContainer.querySelectorAll('.brand-header').forEach(h => (h.style.display = 'none'));
+      // Скрываем ТОЛЬКО стартовую шапку и экран
+      const initialHeader = chatContainer.querySelector(':scope > .brand-header');
+      if (initialHeader) initialHeader.style.display = 'none';
       const newConv = chatContainer.querySelector('.new-conversation');
       if (newConv) newConv.style.display = 'none';
+
+      // Активируем интерфейс чата
       chatInterface.classList.add('active');
+
+      // Гарантируем, что шапка внутри активного чата видна
+      const liveHeader = chatInterface.querySelector('.brand-header');
+      if (liveHeader) liveHeader.style.display = '';
 
       const botMessageDiv = document.createElement('div');
       botMessageDiv.className = 'chat-message bot';
@@ -475,8 +482,7 @@
 
   toggleButton.addEventListener('click', () => {
     chatContainer.classList.toggle('open');
-    // обновим vh при открытии
-    setVhUnit();
+    setVhUnit(); // обновим vh при открытии
   });
 
   closeButtons.forEach(button => {
