@@ -15,7 +15,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      z-index: 2147483646;
+      z-index: 9000;
       display: none;
       width: 380px;
       height: 600px;
@@ -163,7 +163,7 @@
       background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
       color: #fff; border: none; cursor: pointer;
       box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-      z-index: 2147483647; transition: transform .3s;
+      z-index: 8999; transition: transform .3s;
       display: flex; align-items: center; justify-content: center;
       font-size: 20px; font-weight: 700; text-align: center; padding: 0 10px; line-height: 1.2;
       white-space: nowrap; overflow: hidden;
